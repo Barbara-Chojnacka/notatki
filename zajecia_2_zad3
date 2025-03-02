@@ -7,8 +7,8 @@ library(qdap)
 
 # Wczytaj dane tekstowe
 # Wczytaj plik tekstowy z lokalnego dysku
-text_2021 <- readLines("c:/a/Biden - First address to Congress_2021.txt")  # Wybierz plik z przemówieniem z 2021
-text_2024 <- readLines("c:/a/Biden - State of the Union 2024.txt")  # Wybierz plik z przemówieniem z 2024
+text_2021 <- readLines("c:/a/Biden - First address to Congress_2021.txt") 
+text_2024 <- readLines("c:/a/Biden - State of the Union 2024.txt")  
 
 
 
@@ -58,3 +58,7 @@ wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ, max.words = 5, col
 
 ?brewer.pal
 brewer.pal.info
+
+#Odpowiedz
+#Ogolnie priorytety wykryte w obu przemówieniach są podobne, często padają słowa:
+#american, act, president, tax, pay
