@@ -1,0 +1,60 @@
+#zadanie3
+# Tworzenie chmury słów za pomocą pakietu wordcloud
+install.packages("wordcloud")
+install.packages("qdap")
+library(wordcloud)
+library(qdap)
+
+# Wczytaj dane tekstowe
+# Wczytaj plik tekstowy z lokalnego dysku
+text_2021 <- readLines("c:/a/Biden - First address to Congress_2021.txt")  # Wybierz plik z przemówieniem z 2021
+text_2024 <- readLines("c:/a/Biden - State of the Union 2024.txt")  # Wybierz plik z przemówieniem z 2024
+
+
+
+# Przetwarzanie tekstu
+frequent_terms_2021 <- freq_terms(text_2021)
+frequent_terms_2024 <- freq_terms(text_2024)
+frequent_terms_2021 <- freq_terms(text_2021, stopwords = Top200Words)
+frequent_terms_2024 <- freq_terms(text_2024, stopwords = Top200Words)
+plot(frequent_terms_2021)
+plot(frequent_terms_2024)
+
+# Opcje chmury słów
+?wordcloud
+
+# Zmiana wartości min.freq i max.words w celu wyświetlenia mniejszej/większej liczby słów.
+# min.freq: słowa o częstości poniżej tej wartości nie będą wyświetlane
+# max.words: maksymalna liczba słów do wyświetlenia
+
+# Utwórz chmurę słów
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ)
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ)
+
+# Ograniczenie liczby słów w chmurze poprzez określenie minimalnej częstości
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ, min.freq = 4)
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ, min.freq = 4)
+
+# Ograniczenie liczby słów w chmurze poprzez określenie maksymalnej liczby słów
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ, max.words = 5)
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ, max.words = 5)
+
+# Dodanie różnych palet kolorystycznych
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ, min.freq = 4, colors = brewer.pal(9,"Blues"))
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2024$FREQ, min.freq = 4, colors = brewer.pal(9,"Reds"))
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ, min.freq = 4, colors = brewer.pal(9,"Greens"))
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2021$FREQ, min.freq = 4, colors = brewer.pal(9,"Blues"))
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ, min.freq = 4, colors = brewer.pal(9,"Reds"))
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2021$FREQ, min.freq = 4, colors = brewer.pal(9,"Greens"))
+
+# Optymalizacja i dostosowanie wyników
+# Dodanie koloru do chmury słów dla lepszej wizualizacji
+#Dodanie koloru
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ, min.freq = 4, colors = brewer.pal(8,"Dark2"))
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2024$FREQ, max.words = 5, colors = brewer.pal(8,"Accent"))
+#Dodanie koloru
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2021$FREQ, min.freq = 4, colors = brewer.pal(8,"Dark2"))
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ, max.words = 5, colors = brewer.pal(8,"Accent"))
+
+?brewer.pal
+brewer.pal.info
